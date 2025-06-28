@@ -1,0 +1,376 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at center, #0a0015 0%, #000010 100%);
+  color: white;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Glow background */
+.glow-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(102, 0, 255, 0.12), transparent 40%);
+  transition: background 0.15s ease;
+  z-index: 1;
+}
+
+/* Header */
+.curved-header {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 18px 40px;
+  background-color: rgba(10, 0, 20, 0.5);
+  width: 65%;
+  border-radius: 999px;
+  box-shadow: 0 0 35px rgba(150, 0, 255, 0.25);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.logo img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+nav {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav a:hover {
+  color: #ffff;
+  transform: scale(1.05);
+}
+
+.discord-btn {
+  background: linear-gradient(90deg, #6c63ff, #33ccff);
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.discord-btn:hover {
+  box-shadow: 0 0 15px #33ccff;
+  transform: scale(1.08);
+}
+
+/* Hero Section */
+main {
+  text-align: center;
+  padding-top: 180px;
+  margin-bottom: 100px;
+  position: relative;
+  z-index: 2;
+}
+
+.sub-title {
+  color: #00ccff;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2.9rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 20px;
+}
+
+.highlight-purple {
+  color: #a261ff;
+}
+
+.highlight-blue {
+  color: #33ccff;
+}
+
+.description {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  color: #bbb;
+  padding: 0 20px;
+  line-height: 1.6;
+}
+
+/* Apply scroll offset for fixed header */
+section {
+  scroll-margin-top: 100px;
+}
+
+/* Why Us Section */
+.why-section {
+  padding: 100px 40px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.why-section h2 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.why-subtext {
+  font-size: 1.1rem;
+  color: #aaa;
+  margin-bottom: 60px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.feature-card {
+  background: rgba(20, 0, 30, 0.8);
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid rgba(80, 80, 100, 0.3);
+  text-align: left;
+  transition: 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: #33ccff;
+}
+
+.feature-card .icon img {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 0 4px #00bfff80);
+}
+
+.feature-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.feature-card p {
+  font-size: 0.95rem;
+  color: #bbb;
+  line-height: 1.6;
+}
+
+/* VPS Plans */
+.plans-section {
+  padding: 100px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.plans-section h2 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.plans-subtext {
+  font-size: 1.1rem;
+  color: #aaa;
+  margin-bottom: 60px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.plan-card {
+  background: rgba(20, 0, 30, 0.85);
+  border: 1px solid rgba(100, 100, 150, 0.2);
+  border-radius: 16px;
+  padding: 30px 20px;
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+.plan-card:hover {
+  transform: translateY(-5px);
+  border-color: #33ccff;
+}
+
+.plan-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.plan-card .price {
+  font-size: 1.05rem;
+  color: #eee;
+  margin-bottom: 20px;
+}
+
+.plan-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px;
+  color: #aaa;
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.plans-grid ul li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.plans-grid ul li img {
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0 0 2px #00bfff80);
+}
+
+.order-btn {
+  background: linear-gradient(90deg, #a060ff, #00bfff);
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.order-btn:hover {
+  box-shadow: 0 0 12px #33ccff;
+  transform: scale(1.05);
+}
+
+/* CTA Section */
+.cta-section {
+  text-align: center;
+  padding: 100px 20px 80px;
+  background: linear-gradient(to bottom, rgba(10, 0, 20, 0), #000010);
+}
+
+.cta-section h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.cta-section p {
+  color: #aaa;
+  max-width: 700px;
+  margin: 0 auto 40px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.discord-cta {
+  display: inline-block;
+  padding: 14px 30px;
+  background: #5865F2;
+  color: white;
+  font-weight: bold;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: 0.3s ease;
+}
+
+.discord-cta:hover {
+  background: #4854db;
+  transform: scale(1.05);
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 40px 20px 60px;
+  background: linear-gradient(to bottom, #000010, #000010);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.footer-inner img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.footer-brand {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffff;
+}
+
+.footer p {
+  color: #888;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}

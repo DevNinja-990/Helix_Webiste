@@ -1,0 +1,59 @@
+.status-main {
+  padding-top: 160px;
+  text-align: center;
+}
+
+.status-main h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.sub-status {
+  font-size: 1rem;
+  color: #aaa;
+  margin-bottom: 40px;
+}
+
+.status-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  padding-bottom: 100px;
+}
+
+.status-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 18px 30px;
+  width: 90%;
+  max-width: 700px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.node-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.status-indicator {
+  font-weight: bold;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  background: #999;
+  box-shadow: 0 0 6px #999;
+  transition: all 0.2s;
+}

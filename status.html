@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Status | Helix VMs</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="status.css" />
+</head>
+<body>
+  <div class="glow-overlay" id="glow"></div>
+
+  <!-- Header -->
+  <header class="curved-header">
+    <div class="header-content">
+      <div class="logo">
+        <span>Helix VMs</span>
+      </div>
+      <nav>
+        <a href="index.html#why">Why Us</a>
+        <a href="index.html#plans">Plans</a>
+        <a href="status.html">Status</a>
+        <a href="https://discord.gg/UEkE7tjdxn" class="discord-btn">Join Discord</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="status-main">
+    <h1>Server Status</h1>
+    <p class="sub-status">Live status of our panel nodes through API. Updates every 30 seconds.</p>
+
+    <div class="status-list">
+      <div class="status-card" id="panel-status">
+        <span class="node-name">PANEL</span>
+        <span class="status-indicator">Checking...</span>
+      </div>
+
+      <div class="status-card" id="node-status">
+        <span class="node-name">US-1</span>
+        <span class="status-indicator">Checking...</span>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Glow effect
+    document.addEventListener('mousemove', (e) => {
+      const glow = document.getElementById('glow');
+      glow.style.setProperty('--x', `${e.clientX}px`);
+      glow.style.setProperty('--y', `${e.clientY}px`);
+    });
+
+    // Helper to update UI
+    function updateStatus(id, online) {
+      const card = document.getElementById(id);
+      const text = card.querySelector(".status-indicator");
+
+      text.innerHTML = ''; // Clear previous
+
+      const dot = document.createElement("span");
+      dot.className = "dot";
+      dot.style.background = online ? "#14ff82" : "#ff3d3d";
+      dot.style.boxShadow = `0 0 6px ${online ? "#14ff82" : "#ff3d3d"}`;
+
+      text.appendChild(dot);
+      text.append(" " + (online ? "ONLINE" : "OFFLINE"));
+    }
+
+    // Panel check using CORS proxy
+    function checkPanel() {
+      fetch("https://api.allorigins.win/raw?url=https://ctrl.helixhost.in")
+        .then(res => updateStatus("panel-status", res.ok))
+        .catch(() => updateStatus("panel-status", false));
+    }
+
+    // Node daemon check using CORS proxy
+    function checkNode() {
+      fetch("https://api.allorigins.win/raw?url=http://paidnode1.helixhost.in:8080")
+        .then(res => updateStatus("node-status", res.ok))
+        .catch(() => updateStatus("node-status", false));
+    }
+
+    function runChecks() {
+      checkPanel();
+      checkNode();
+    }
+
+    runChecks(); // First run
+    setInterval(runChecks, 30000); // Every 30 seconds
+  </script>
+</body>
+</html>
